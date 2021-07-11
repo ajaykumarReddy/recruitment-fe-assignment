@@ -1,0 +1,13 @@
+<div class="make-transfer-container">
+
+  <ng-container *ngIf="currentPage === 'add'">
+    <app-transafer-add [moneyTransferForm]="moneyTransferForm" (sendTransferEvent)="sendTransfer($event)">
+    </app-transafer-add>
+  </ng-container>
+
+
+  <ng-container *ngIf="currentPage === 'list'">
+    <app-transaction-list [transactionList]="transactionList$ | async" (inputChange)="inputChange($event)">
+    </app-transaction-list>
+  </ng-container>
+</div>

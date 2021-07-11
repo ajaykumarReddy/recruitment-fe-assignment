@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <i class="bi bi-list-task"></i>&nbsp;&nbsp; Transaction <strong>List</strong>
+  </div>
+  <div class="card-body">
+    <app-filter (inputChange)="inputChange.emit($event)"></app-filter>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let transaction of transactionList"
+        class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="p-4 left-border" [style.borderLeftColor]="transaction.categoryCode">
+          {{transaction.dates.valueDate | date}}</div>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{transaction.merchant.name}}</div>
+          {{transaction.transaction.type}}
+        </div>
+        <span [style.color]="transaction.categoryCode">{{transaction.transaction.amountCurrency.currencyCode}}
+          {{transaction.transaction.amountCurrency.amount}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

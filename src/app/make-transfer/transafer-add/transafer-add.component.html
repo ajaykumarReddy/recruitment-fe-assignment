@@ -1,0 +1,64 @@
+<div class="card">
+  <div class="card-header">
+    <i class="bi bi-wallet2"></i> &nbsp;&nbsp;<strong>Make</strong> Transfer
+  </div>
+  <div class="card-body">
+    <form class="row" [formGroup]="moneyTransferForm" (ngSubmit)="triggerSubmit(content)">
+      <div class="col-md-7">
+        <label for="from-acc" class="form-label">From Account: </label>
+        <input id="from-acc" type="text" formControlName="fromAccount" class="form-control" placeholder="From account"
+          required>
+      </div>
+
+      <div class="col-md-7">
+        <label for="to-acc" class="form-label">To Account:</label>
+        <input id="to-acc" type="text" formControlName="toAccount" class="form-control" placeholder="To Account"
+          required>
+        <div *ngIf="f.toAccount.invalid && (f.toAccount.dirty || f.toAccount.touched)">
+          <div *ngIf="f.toAccount.errors?.required" class="text-danger">
+            To Account Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <label for="amount" class="form-label">Amount: </label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input id="amount" min="1" type="number" formControlName="amount" required class="form-control"
+            aria-label="Amount (to the nearest dollar)">
+        </div>
+        <div *ngIf="f.amount.invalid && (f.amount.dirty || f.amount.touched)" class="alert">
+          <div *ngIf="f.amount.errors?.required">Amount is required</div>
+          <div *ngIf="f.amount.errors?.min">Negative numbers are not allowed</div>
+        </div>
+      </div>
+      <app-submit-button></app-submit-button>
+    </form>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><strong>Review </strong> Transfer</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you ready to sent out this transfer?</p>
+    <div class="mb-3">
+      <label class="form-label"><strong>It will be sent to account</strong> </label>
+      <p>{{moneyTransferForm.value.toAccount}}</p>
+    </div>
+    <div class="mb-3">
+      <label class="form-label"><strong>With amount of</strong></label>
+      <p>{{moneyTransferForm.value.amount}}</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="sendTransfer()">Send Transfer</button>
+  </div>
+</ng-template>

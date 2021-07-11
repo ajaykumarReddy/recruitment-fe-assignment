@@ -1,0 +1,14 @@
+@import "../../bb-ui/styles/main.scss";
+
+.card-header {
+    background: $primary-blue;
+    color: $white-color;
+    font-size: 18px;
+}
+.col-md-7 {
+    margin-bottom: 20px;
+}
+app-submit-button {
+    display: flex;
+    justify-content: center;
+}

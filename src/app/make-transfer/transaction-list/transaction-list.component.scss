@@ -1,0 +1,15 @@
+@import "../../bb-ui/styles/main.scss";
+
+.card-header {
+    background: $primary-blue;
+    color: $white-color;
+    font-size: 18px;
+}
+.left-border {
+    border-left: 6px solid currentColor;
+}
+app-filter {
+    margin-left: 14px;
+    display: flex;
+    display: block;
+}
