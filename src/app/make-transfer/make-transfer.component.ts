@@ -13,7 +13,7 @@ import { combineLatest, Observable, Subject } from 'rxjs';
 })
 export class MakeTransferComponent implements OnInit {
 
-  currentPage = 'list';
+  currentPage = 'add';
 
   moneyTransferForm = this.fb.group({
     fromAccount: [{ value: 'My Personal Account $5824', disabled: true }, Validators.required],
